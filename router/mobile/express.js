@@ -27,7 +27,7 @@ express.post("/express_list", async (ctx) => {
     ctx.body = res
   } else if (expressName == "all" && sort == "asc") {
     let res = await new Promise((resolve, reject) => {
-      return db.query(`select * from express_list order by forward_delivery_time asc limit ${(page - 1) * pageSize},${pageSize};`, (err, data) => {
+      return db.query(`select * from express_list order by create_time asc limit ${(page - 1) * pageSize},${pageSize};`, (err, data) => {
         if (err) throw err
         let obj = {
           code: 200,
@@ -41,7 +41,7 @@ express.post("/express_list", async (ctx) => {
     ctx.body = res
   } else if (expressName == "all" && sort == "desc") {
     let res = await new Promise((resolve, reject) => {
-      return db.query(`select * from express_list order by forward_delivery_time desc limit ${(page - 1) * pageSize},${pageSize};`, (err, data) => {
+      return db.query(`select * from express_list order by create_time desc limit ${(page - 1) * pageSize},${pageSize};`, (err, data) => {
         if (err) throw err
         let obj = {
           code: 200,
@@ -69,7 +69,7 @@ express.post("/express_list", async (ctx) => {
     ctx.body = res
   } else if (expressName != "all" && sort == "desc") {
     let res = await new Promise((resolve, reject) => {
-      return db.query(`select * from express_list where express_name ='${expressName}' order by forward_delivery_time desc limit ${(page - 1) * pageSize},${pageSize};`, (err, data) => {
+      return db.query(`select * from express_list where express_name ='${expressName}' order by create_time desc limit ${(page - 1) * pageSize},${pageSize};`, (err, data) => {
         if (err) throw err
         let obj = {
           code: 200,
@@ -83,7 +83,7 @@ express.post("/express_list", async (ctx) => {
     ctx.body = res
   } else if (expressName != "all" && sort == "asc") {
     let res = await new Promise((resolve, reject) => {
-      return db.query(`select * from express_list where express_name ='${expressName}' order by forward_delivery_time asc limit ${(page - 1) * pageSize},${pageSize};`, (err, data) => {
+      return db.query(`select * from express_list where express_name ='${expressName}' order by create_time asc limit ${(page - 1) * pageSize},${pageSize};`, (err, data) => {
         if (err) throw err
         let obj = {
           code: 200,
@@ -100,7 +100,7 @@ express.post("/express_list", async (ctx) => {
 
 // 新建task
 express.post("/add_express", async (ctx) => {
-  console.log(ctx.request.body)
+  // console.log(ctx.request.body)
   const express_name = ctx.request.body.express_name
   const express_money = ctx.request.body.express_money
   const delivery_address = ctx.request.body.delivery_address

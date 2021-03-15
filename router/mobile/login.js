@@ -61,7 +61,7 @@ login.post("/login", async (ctx) => {
       const _token = token.create(resArr[0].username)
       ctx.body = {
         code: 200,
-        msg: '登录成功!',
+        msg: '登录成功',
         username: resArr[0].username,
         token: _token
       }
