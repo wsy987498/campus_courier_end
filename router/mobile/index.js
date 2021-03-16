@@ -8,9 +8,10 @@ const router = new Router()
 
 const login = require("./login")
 const express = require("./express")
+const myReceiving = require("./myReceiving")
 
 router.get("/", async (ctx) => {
-  ctx.body = "hellow Koa2!" // 返回数据给页面 ctx.response.body="xxx" === ctx.body="xxx"
+  ctx.body = "campus_courier api!"
 })
 
 router.get("/mobile", async (ctx) => {
@@ -20,8 +21,8 @@ router.get("/mobile", async (ctx) => {
 
 router.use("/mobile", login.routes(), login.allowedMethods())
 router.use("/mobile", express.routes(), express.allowedMethods())
+router.use("/mobile", myReceiving.routes(), myReceiving.allowedMethods())
 
 // 路由重定向
 // router.redirect("/", ",/mobile")
-
 module.exports = router

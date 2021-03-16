@@ -36,7 +36,7 @@ app.use(mobileRouter.routes(), adminRouter.allowedMethods())
 // 接口异常处理返回信息 error 
 errorHandler(app)
 
-// app running at http://localhost:xxxx
+// app running at http://localhost:xxx
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`)
 })
