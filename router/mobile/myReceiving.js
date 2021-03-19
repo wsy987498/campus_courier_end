@@ -50,11 +50,12 @@ myReceiving.post("/addtoReceiving", async (ctx) => {
   const express_recipients = ctx.request.body.express_recipients
   const phone = ctx.request.body.phone
   const remarks = ctx.request.body.remarks
+  const user_id = ctx.request.body.user_id
 
   const insertReceivingSql =
     `insert into isReceiving_list
-    (express_name ,express_money,delivery_address,forward_delivery_time,express_type,pick_code,express_id,express_recipients,phone,remarks)
-    values('${express_name}','${express_money}','${delivery_address}','${forward_delivery_time}','${express_type}','${pick_code}','${express_id}','${express_recipients}','${phone}','${remarks}')`
+    (express_name ,express_money,delivery_address,forward_delivery_time,express_type,pick_code,express_id,express_recipients,phone,remarks,user_id)
+    values('${express_name}','${express_money}','${delivery_address}','${forward_delivery_time}','${express_type}','${pick_code}','${express_id}','${express_recipients}','${phone}','${remarks}','${user_id}')`
 
   const res = await new Promise((resolve, reject) => {
     return db.query(insertReceivingSql, (err, data) => {
@@ -77,7 +78,7 @@ myReceiving.post("/addtoReceiving", async (ctx) => {
   ctx.body = res
 })
 
-// 我的接单 已完成
+// 我的接单 完成
 myReceiving.post("/addtoFinished", async (ctx) => {
   const express_name = ctx.request.body.express_name
   const express_money = ctx.request.body.express_money
@@ -89,11 +90,12 @@ myReceiving.post("/addtoFinished", async (ctx) => {
   const express_recipients = ctx.request.body.express_recipients
   const phone = ctx.request.body.phone
   const remarks = ctx.request.body.remarks
+  const user_id = ctx.request.body.user_id
 
   const insertFinishedSql =
     `insert into isfinished_list
-    (express_name ,express_money,delivery_address,forward_delivery_time,express_type,pick_code,express_id,express_recipients,phone,remarks)
-    values('${express_name}','${express_money}','${delivery_address}','${forward_delivery_time}','${express_type}','${pick_code}','${express_id}','${express_recipients}','${phone}','${remarks}')`
+    (express_name ,express_money,delivery_address,forward_delivery_time,express_type,pick_code,express_id,express_recipients,phone,remarks,user_id)
+    values('${express_name}','${express_money}','${delivery_address}','${forward_delivery_time}','${express_type}','${pick_code}','${express_id}','${express_recipients}','${phone}','${remarks}','${user_id}')`
 
   const res = await new Promise((resolve, reject) => {
     return db.query(insertFinishedSql, (err, data) => {
@@ -128,11 +130,12 @@ myReceiving.post("/deltoJiedan", async (ctx) => {
   const express_recipients = ctx.request.body.express_recipients
   const phone = ctx.request.body.phone
   const remarks = ctx.request.body.remarks
+  const user_id = ctx.request.body.user_id
 
   const insertTojiedanSql =
     `insert into express_list
-    (express_name ,express_money,delivery_address,forward_delivery_time,express_type,pick_code,express_id,express_recipients,phone,remarks)
-    values('${express_name}','${express_money}','${delivery_address}','${forward_delivery_time}','${express_type}','${pick_code}','${express_id}','${express_recipients}','${phone}','${remarks}')`
+    (express_name ,express_money,delivery_address,forward_delivery_time,express_type,pick_code,express_id,express_recipients,phone,remarks,user_id)
+    values('${express_name}','${express_money}','${delivery_address}','${forward_delivery_time}','${express_type}','${pick_code}','${express_id}','${express_recipients}','${phone}','${remarks}','${user_id}')`
 
   const res = await new Promise((resolve, reject) => {
     return db.query(insertTojiedanSql, (err, data) => {
@@ -154,9 +157,5 @@ myReceiving.post("/deltoJiedan", async (ctx) => {
   })
   ctx.body = res
 })
-
-
-
-
 
 module.exports = myReceiving

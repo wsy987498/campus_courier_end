@@ -4,6 +4,7 @@ const db = require('../../config/db')
 
 // 我的接单 已接单 num
 myFinish.get("/getFinishedNum", async (ctx) => {
+
   const res = await new Promise((resolve, reject) => {
     return db.query(`select * from isfinished_list`, (err, data) => {
       if (err) throw err
@@ -37,9 +38,5 @@ myFinish.post("/isFinished_list", async (ctx) => {
   })
   ctx.body = res
 })
-
-
-
-
 
 module.exports = myFinish
