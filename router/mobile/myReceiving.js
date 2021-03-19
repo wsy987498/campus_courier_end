@@ -7,7 +7,7 @@ myReceiving.post("/getReceivingNum", async (ctx) => {
   const user_id = ctx.request.body.user_id
 
   const res = await new Promise((resolve, reject) => {
-    return db.query(`select * from isReceiving_list where user_id!='${user_id}'`, (err, data) => {
+    return db.query(`select * from isreceiving_list where user_id!='${user_id}'`, (err, data) => {
       if (err) throw err
       let obj = {
         code: 200,
@@ -28,7 +28,7 @@ myReceiving.post("/isReceiving_list", async (ctx) => {
   const user_id = ctx.request.body.user_id
 
   const res = await new Promise((resolve, reject) => {
-    return db.query(`select * from isReceiving_list where user_id!='${user_id}' limit ${(page - 1) * pageSize},${pageSize};`, (err, data) => {
+    return db.query(`select * from isreceiving_list where user_id!='${user_id}' limit ${(page - 1) * pageSize},${pageSize};`, (err, data) => {
       if (err) throw err
       let obj = {
         code: 200,
@@ -58,7 +58,7 @@ myReceiving.post("/addtoReceiving", async (ctx) => {
   const istakeit = ctx.request.body.istakeit
 
   const insertReceivingSql =
-    `insert into isReceiving_list
+    `insert into isreceiving_list
     (express_name ,express_money,delivery_address,forward_delivery_time,express_type,pick_code,express_id,express_recipients,phone,remarks,user_id,istakeit)
     values('${express_name}','${express_money}','${delivery_address}','${forward_delivery_time}','${express_type}','${pick_code}','${express_id}','${express_recipients}','${phone}','${remarks}','${user_id}','${istakeit}')`
 
@@ -114,7 +114,7 @@ myReceiving.post("/addtoFinished", async (ctx) => {
       resolve(obj)
     })
   })
-  const delExpress_listSql = `delete from isReceiving_list where express_id=${express_id};`
+  const delExpress_listSql = `delete from isreceiving_list where express_id=${express_id};`
   new Promise((resolve, reject) => {
     return db.query(delExpress_listSql, (err, data) => {
       if (err) throw err
@@ -148,7 +148,7 @@ myReceiving.post("/havetoTake_list", async (ctx) => {
   const user_id = ctx.request.body.user_id
   const istakeit = ctx.request.body.istakeit
 
-  const updateSql = `update isReceiving_list set istakeit = 'true';`
+  const updateSql = `update isreceiving_list set istakeit = 'true';`
   new Promise((resolve, reject) => {
     return db.query(updateSql, (err, data) => {
       if (err) throw err
@@ -208,7 +208,7 @@ myReceiving.post("/deltoJiedan", async (ctx) => {
       resolve(obj)
     })
   })
-  const delExpress_listSql = `delete from isReceiving_list where express_id=${express_id};`
+  const delExpress_listSql = `delete from isreceiving_list where express_id=${express_id};`
   new Promise((resolve, reject) => {
     return db.query(delExpress_listSql, (err, data) => {
       if (err) throw err
