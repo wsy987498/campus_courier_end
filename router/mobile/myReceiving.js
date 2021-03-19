@@ -20,7 +20,6 @@ myReceiving.post("/getReceivingNum", async (ctx) => {
   ctx.body = res
 })
 
-
 //我的接单 已接单列表
 myReceiving.post("/isReceiving_list", async (ctx) => {
   const page = ctx.request.body.page
