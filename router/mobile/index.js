@@ -11,6 +11,7 @@ const express = require("./express")
 const myReceiving = require("./myReceiving")
 const myFinish = require("./myFinish")
 const waitOrder = require("./waitOrder")
+const havetoTake = require("./havetoTake")
 
 router.get("/", async (ctx) => {
   ctx.body = "campus_courier api!"
@@ -26,6 +27,7 @@ router.use("/mobile", express.routes(), express.allowedMethods())
 router.use("/mobile", myReceiving.routes(), myReceiving.allowedMethods())
 router.use("/mobile", myFinish.routes(), myFinish.allowedMethods())
 router.use("/mobile", waitOrder.routes(), waitOrder.allowedMethods())
+router.use("/mobile", havetoTake.routes(), havetoTake.allowedMethods())
 
 // 路由重定向
 // router.redirect("/", ",/mobile")

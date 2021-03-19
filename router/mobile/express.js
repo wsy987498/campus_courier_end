@@ -18,7 +18,7 @@ express.post("/express_list", async (ctx) => {
         if (err) throw err
         let obj = {
           code: 200,
-          msg: '获取成功！',
+          msg: '获取成功',
           data,
           total: data.length
         }
@@ -32,7 +32,7 @@ express.post("/express_list", async (ctx) => {
         if (err) throw err
         let obj = {
           code: 200,
-          msg: '获取成功！',
+          msg: '获取成功',
           data,
           total: data.length
         }
@@ -46,7 +46,7 @@ express.post("/express_list", async (ctx) => {
         if (err) throw err
         let obj = {
           code: 200,
-          msg: '获取成功！',
+          msg: '获取成功',
           data,
           total: data.length
         }
@@ -60,7 +60,7 @@ express.post("/express_list", async (ctx) => {
         if (err) throw err
         let obj = {
           code: 200,
-          msg: '获取成功！',
+          msg: '获取成功',
           data,
           total: data.length
         }
@@ -74,7 +74,7 @@ express.post("/express_list", async (ctx) => {
         if (err) throw err
         let obj = {
           code: 200,
-          msg: '获取成功！',
+          msg: '获取成功',
           data,
           total: data.length
         }
@@ -88,7 +88,7 @@ express.post("/express_list", async (ctx) => {
         if (err) throw err
         let obj = {
           code: 200,
-          msg: '获取成功！',
+          msg: '获取成功',
           data,
           total: data.length
         }
@@ -113,11 +113,12 @@ express.post("/add_express", async (ctx) => {
   const phone = ctx.request.body.phone
   const remarks = ctx.request.body.remarks
   const user_id = ctx.request.body.user_id
+  const istakeit = ctx.request.body.istakeit
 
   const insertExpressSql =
     `insert into express_list
-    (express_name ,express_money,delivery_address,forward_delivery_time,express_type,pick_code,express_recipients,phone,remarks,user_id)
-    values('${express_name}','${express_money}','${delivery_address}','${forward_delivery_time}','${express_type}','${pick_code}','${express_recipients}','${phone}','${remarks}','${user_id}')`
+    (express_name ,express_money,delivery_address,forward_delivery_time,express_type,pick_code,express_recipients,phone,remarks,user_id,istakeit)
+    values('${express_name}','${express_money}','${delivery_address}','${forward_delivery_time}','${express_type}','${pick_code}','${express_recipients}','${phone}','${remarks}','${user_id}','${istakeit}')`
   const res = await new Promise((resolve, reject) => {
     return db.query(insertExpressSql, (err, data) => {
       if (err) throw err

@@ -22,7 +22,7 @@ login.post("/register", async (ctx) => {
   if (resArr.length > 0) {
     ctx.body = {
       code: 203,
-      msg: '该账号已存在!'
+      msg: '该账号已存在'
     }
   } else {
     // 不存在该账号 insert data 
@@ -69,13 +69,13 @@ login.post("/login", async (ctx) => {
     } else {
       ctx.body = {
         code: 202,
-        msg: '账号或密码错误!'
+        msg: '账号或密码错误'
       }
     }
   } else {
     ctx.body = {
       code: 202,
-      msg: '账号或密码错误!'
+      msg: '账号或密码错误'
     }
   }
 })

@@ -11,7 +11,7 @@ waitOrder.post("/getWaitOrderNum", async (ctx) => {
       if (err) throw err
       let obj = {
         code: 200,
-        msg: '获取成功！',
+        msg: '获取成功',
         total: data.length
       }
       resolve(obj)
@@ -31,7 +31,7 @@ waitOrder.post("/getWaitOrder_list", async (ctx) => {
       if (err) throw err
       let obj = {
         code: 200,
-        msg: '获取成功！',
+        msg: '获取成功',
         data,
         total: data.length
       }
