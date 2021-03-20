@@ -146,19 +146,21 @@ myReceiving.post("/havetoTake_list", async (ctx) => {
   const remarks = ctx.request.body.remarks
   const user_id = ctx.request.body.user_id
   const istakeit = ctx.request.body.istakeit
+  const qujianren = ctx.request.body.qujianren
 
-  const updateSql = `update isreceiving_list set istakeit = 'true';`
+
+  const updateSql = `update isreceiving_list set istakeit = 'true' where express_id='${express_id}';`
   new Promise((resolve, reject) => {
     return db.query(updateSql, (err, data) => {
-      if (err) throw err
+      if (err) throw err++
       resolve()
     })
   })
 
   const insertFinishedSql =
     `insert into havetotake_list
-    (express_name ,express_money,delivery_address,forward_delivery_time,express_type,pick_code,express_id,express_recipients,phone,remarks,user_id,istakeit)
-    values('${express_name}','${express_money}','${delivery_address}','${forward_delivery_time}','${express_type}','${pick_code}','${express_id}','${express_recipients}','${phone}','${remarks}','${user_id}','${istakeit}')`
+    (express_name ,express_money,delivery_address,forward_delivery_time,express_type,pick_code,express_id,express_recipients,phone,remarks,user_id,istakeit,qujianren)
+    values('${express_name}','${express_money}','${delivery_address}','${forward_delivery_time}','${express_type}','${pick_code}','${express_id}','${express_recipients}','${phone}','${remarks}','${user_id}','${istakeit}','${qujianren}')`
 
   const res = await new Promise((resolve, reject) => {
     return db.query(insertFinishedSql, (err, data) => {
