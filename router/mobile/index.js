@@ -11,7 +11,7 @@ const express = require("./express")
 const myReceiving = require("./myReceiving")
 const myFinish = require("./myFinish")
 const waitOrder = require("./waitOrder")
-const havetoTake = require("./havetoTake")
+const havetoTake = require("./havetotake")
 
 router.get("/", async (ctx) => {
   ctx.body = "campus_courier api!"
