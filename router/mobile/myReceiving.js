@@ -157,6 +157,17 @@ myReceiving.post("/havetoTake_list", async (ctx) => {
     })
   })
 
+  const insertdeliverySql =
+    `insert into out_of_delivery
+    (express_name ,express_money,delivery_address,forward_delivery_time,express_type,pick_code,express_id,express_recipients,phone,remarks,user_id,istakeit,qujianren)
+    values('${express_name}','${express_money}','${delivery_address}','${forward_delivery_time}','${express_type}','${pick_code}','${express_id}','${express_recipients}','${phone}','${remarks}','${user_id}','${istakeit}','${qujianren}')`
+  new Promise((resolve, reject) => {
+    return db.query(insertdeliverySql, (err, data) => {
+      if (err) throw err++
+      resolve()
+    })
+  })
+
   const insertFinishedSql =
     `insert into havetotake_list
     (express_name ,express_money,delivery_address,forward_delivery_time,express_type,pick_code,express_id,express_recipients,phone,remarks,user_id,istakeit,qujianren)
@@ -218,5 +229,27 @@ myReceiving.post("/deltoJiedan", async (ctx) => {
   })
   ctx.body = res
 })
+
+
+
+
+//获取派送时间 
+myReceiving.post("/getdeliverytime", async (ctx) => {
+  const express_id = ctx.request.body.express_id
+
+  const res = await new Promise((resolve, reject) => {
+    return db.query(`select * from out_of_delivery where express_id='${express_id}'`, (err, data) => {
+      if (err) throw err
+      let obj = {
+        code: 200,
+        msg: '获取成功',
+        data,
+      }
+      resolve(obj)
+    })
+  })
+  ctx.body = res
+})
+
 
 module.exports = myReceiving
