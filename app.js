@@ -20,7 +20,7 @@ const adminRouter = require("./router/admin/index")// admin router
 const mobileRouter = require("./router/mobile/index")// moblie router
 
 // 端口号
-const port = 3000
+const port = 9000
 
 // 调用中间件 app.use()
 /**
