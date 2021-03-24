@@ -4,22 +4,41 @@ const user = new Router()
 const db = require('../../config/db')
 
 // 用户列表
-user.get("/userlist", async (ctx) => {
-  const userlist = `select * from users_list`
+
+
+user.post("/userlist", async (ctx) => {
+
+  const pagenum = ctx.request.body.pagenum
+  const pagesize = ctx.request.body.pagesize
+
+  const res1 = await new Promise((resolve, reject) => {
+    return db.query(`select * from users_list `, (err, data) => {
+      if (err) throw err
+      let obj = {
+        total: data.length
+      }
+      resolve(obj)
+    })
+  })
+
   const res = await new Promise((resolve, reject) => {
-    return db.query(userlist, (err, data) => {
+    return db.query(`select * from users_list limit ${(pagenum - 1) * pagesize},${pagesize};`, (err, data) => {
       if (err) throw err
       let obj = {
         code: 200,
-        msg: '获取成功！',
-        data: data,
-        total: data.length
+        msg: '获取成功',
+        data,
+        total: res1.total
       }
       resolve(obj)
     })
   })
   ctx.body = res
 })
+
+
+
+
 
 // 添加用户
 user.post("/adduser", async (ctx) => {

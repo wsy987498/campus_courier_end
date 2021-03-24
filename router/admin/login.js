@@ -81,7 +81,7 @@ login.post("/login", async (ctx) => {
 })
 
 
-
+// 修改密码
 login.post("/updatePassword", async (ctx) => {
   const id = ctx.request.body.id
   const apwd = ctx.request.body.apwd
