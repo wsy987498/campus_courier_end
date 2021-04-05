@@ -7,6 +7,7 @@ const cors = require("koa2-cors")
 
 // 读取静态资源文件
 const static = require("koa-static")
+const staticCache = require('koa-static-cache');
 const path = require("path")
 
 // bodyparser 
@@ -32,6 +33,32 @@ app.use(static(path.join(__dirname + "/assets")))
 app.use(bodyparser())//get post data
 app.use(adminRouter.routes(), adminRouter.allowedMethods())
 app.use(mobileRouter.routes(), adminRouter.allowedMethods())
+
+app.use(
+  staticCache(
+    path.join(__dirname, './public'),
+    { dynamic: true },
+    {
+      maxAge: 365 * 24 * 60 * 60,
+    },
+  ),
+);
+app.use(
+  staticCache(
+    path.join(__dirname, './public/avator'),
+    { dynamic: true },
+    {
+      maxAge: 365 * 24 * 60 * 60,
+    },
+  ),
+);
+app.use(
+  bodyparser({
+    multipart: true,
+    formidable: { uploadDir: path.join(__dirname, './public/images') },
+  }),
+);
+
 
 // 接口异常处理返回信息 error 
 errorHandler(app)
