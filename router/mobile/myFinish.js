@@ -7,7 +7,7 @@ myFinish.post("/getFinishedNum", async (ctx) => {
   const user_id = ctx.request.body.user_id
 
   const res = await new Promise((resolve, reject) => {
-    return db.query(`select * from isfinished_list where user_id!='${user_id}'`, (err, data) => {
+    return db.query(`select * from isfinished_list where isfi_user_id!='${user_id}'`, (err, data) => {
       if (err) throw err
       let obj = {
         code: 200,
@@ -27,7 +27,7 @@ myFinish.post("/isFinished_list", async (ctx) => {
   const user_id = ctx.request.body.user_id
 
   const res = await new Promise((resolve, reject) => {
-    return db.query(`select * from isfinished_list where user_id!='${user_id}' limit ${(page - 1) * pageSize},${pageSize};`, (err, data) => {
+    return db.query(`select * from isfinished_list where isfi_user_id!='${user_id}' limit ${(page - 1) * pageSize},${pageSize};`, (err, data) => {
       if (err) throw err
       let obj = {
         code: 200,
@@ -47,7 +47,7 @@ myFinish.post("/getfadanFinishedNum", async (ctx) => {
   const user_id = ctx.request.body.user_id
 
   const res = await new Promise((resolve, reject) => {
-    return db.query(`select * from isfinished_list where user_id='${user_id}'`, (err, data) => {
+    return db.query(`select * from isfinished_list where isfi_user_id='${user_id}'`, (err, data) => {
       if (err) throw err
       let obj = {
         code: 200,
@@ -67,7 +67,7 @@ myFinish.post("/getfadanFinished_list", async (ctx) => {
   const user_id = ctx.request.body.user_id
 
   const res = await new Promise((resolve, reject) => {
-    return db.query(`select * from isfinished_list where user_id='${user_id}' limit ${(page - 1) * pageSize},${pageSize};`, (err, data) => {
+    return db.query(`select * from isfinished_list where isfi_user_id='${user_id}' limit ${(page - 1) * pageSize},${pageSize};`, (err, data) => {
       if (err) throw err
       let obj = {
         code: 200,

@@ -7,7 +7,7 @@ havetoTake.post("/gethavetoTakeNum", async (ctx) => {
   const user_id = ctx.request.body.user_id
 
   const res = await new Promise((resolve, reject) => {
-    return db.query(`select * from havetotake_list where user_id='${user_id}'`, (err, data) => {
+    return db.query(`select * from havetotake_list where istake_user_id='${user_id}'`, (err, data) => {
       if (err) throw err
       let obj = {
         code: 200,
@@ -28,7 +28,7 @@ havetoTake.post("/getHavetoTake_list", async (ctx) => {
   const user_id = ctx.request.body.user_id
 
   const res = await new Promise((resolve, reject) => {
-    return db.query(`select * from havetotake_list where user_id='${user_id}' limit ${(page - 1) * pageSize},${pageSize};`, (err, data) => {
+    return db.query(`select * from havetotake_list where istake_user_id='${user_id}' limit ${(page - 1) * pageSize},${pageSize};`, (err, data) => {
       if (err) throw err
       let obj = {
         code: 200,
