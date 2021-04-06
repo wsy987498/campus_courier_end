@@ -4,8 +4,6 @@ const user = new Router()
 const db = require('../../config/db')
 
 // 用户列表
-
-
 user.post("/userlist", async (ctx) => {
 
   const pagenum = ctx.request.body.pagenum
@@ -35,10 +33,6 @@ user.post("/userlist", async (ctx) => {
   })
   ctx.body = res
 })
-
-
-
-
 
 // 添加用户
 user.post("/adduser", async (ctx) => {
@@ -97,7 +91,6 @@ user.post("/updateuserinfo", async (ctx) => {
   ctx.body = res
 })
 
-
 // del userinfo
 user.post("/deluserinfo", async (ctx) => {
   const id = ctx.request.body.id
@@ -114,7 +107,6 @@ user.post("/deluserinfo", async (ctx) => {
   })
   ctx.body = res
 })
-
 
 // search userlist
 user.post("/searchuserlist", async (ctx) => {

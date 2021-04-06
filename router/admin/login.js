@@ -80,7 +80,6 @@ login.post("/login", async (ctx) => {
   }
 })
 
-
 // 修改密码
 login.post("/updatePassword", async (ctx) => {
   const id = ctx.request.body.id
@@ -100,8 +99,5 @@ login.post("/updatePassword", async (ctx) => {
   })
   ctx.body = res
 })
-
-
-
 
 module.exports = login
