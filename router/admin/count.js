@@ -6,7 +6,8 @@ const db = require('../../config/db')
 count.post("/getWaitOrderNum", async (ctx) => {
   const user_id = ctx.request.body.user_id
   const res = await new Promise((resolve, reject) => {
-    return db.query(`select * from express_list where user_id='${user_id}'`, (err, data) => {
+    // return db.query(`select * from express_list where user_id='${user_id}'`, (err, data) => {
+    return db.query(`select * from express_list`, (err, data) => {
       if (err) throw err
       let obj = {
         code: 200,
@@ -23,7 +24,8 @@ count.post("/getWaitOrderNum", async (ctx) => {
 count.post("/gethavetoTakeNum", async (ctx) => {
   const user_id = ctx.request.body.user_id
   const res = await new Promise((resolve, reject) => {
-    return db.query(`select * from havetotake_list where user_id='${user_id}'`, (err, data) => {
+    // return db.query(`select * from havetotake_list where istake_user_id='${user_id}'`, (err, data) => {
+    return db.query(`select * from havetotake_list`, (err, data) => {
       if (err) throw err
       let obj = {
         code: 200,
@@ -40,7 +42,8 @@ count.post("/gethavetoTakeNum", async (ctx) => {
 count.post("/getReceivingNum", async (ctx) => {
   const user_id = ctx.request.body.user_id
   const res = await new Promise((resolve, reject) => {
-    return db.query(`select * from isreceiving_list where user_id!='${user_id}'`, (err, data) => {
+    // return db.query(`select * from isreceiving_list where isrec_user_id!='${user_id}'`, (err, data) => {
+    return db.query(`select * from isreceiving_list`, (err, data) => {
       if (err) throw err
       let obj = {
         code: 200,
@@ -57,7 +60,8 @@ count.post("/getReceivingNum", async (ctx) => {
 count.post("/getfadanFinishedNum", async (ctx) => {
   const user_id = ctx.request.body.user_id
   const res = await new Promise((resolve, reject) => {
-    return db.query(`select * from isfinished_list where user_id='${user_id}'`, (err, data) => {
+    // return db.query(`select * from isfinished_list where isfi_user_id='${user_id}'`, (err, data) => {
+    return db.query(`select * from isfinished_list`, (err, data) => {
       if (err) throw err
       let obj = {
         code: 200,
@@ -74,7 +78,8 @@ count.post("/getfadanFinishedNum", async (ctx) => {
 count.post("/getFinishedNum", async (ctx) => {
   const user_id = ctx.request.body.user_id
   const res = await new Promise((resolve, reject) => {
-    return db.query(`select * from isfinished_list where user_id!='${user_id}'`, (err, data) => {
+    // return db.query(`select * from isfinished_list where isfi_user_id!='${user_id}'`, (err, data) => {
+    return db.query(`select * from isfinished_list`, (err, data) => {
       if (err) throw err
       let obj = {
         code: 200,

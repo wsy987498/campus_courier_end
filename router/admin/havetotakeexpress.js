@@ -36,7 +36,7 @@ havetotakeexpress.post("/gethavetotakeexpress_list", async (ctx) => {
 havetotakeexpress.post("/delgethavetotakeexpress_list", async (ctx) => {
   const id = ctx.request.body.id
   const res = await new Promise((resolve, reject) => {
-    return db.query(`delete from havetotake_list where express_id = ${id};`, (err, data) => {
+    return db.query(`delete from havetotake_list where istake_express_id = ${id};`, (err, data) => {
       if (err) throw err
       let obj = {
         code: 200,
@@ -57,7 +57,7 @@ havetotakeexpress.post("/searchgethavetotakeexpress_list", async (ctx) => {
   const express_recipients = ctx.request.body.express_recipients
 
   const res = await new Promise((resolve, reject) => {
-    return db.query(`select * from havetotake_list where express_recipients like '%${express_recipients}%' `, (err, data) => {
+    return db.query(`select * from havetotake_list where istake_express_recipients like '%${express_recipients}%' `, (err, data) => {
       if (err) throw err
       let obj = {
         code: 200,

@@ -11,7 +11,7 @@ login.post("/register", async (ctx) => {
   const password = ctx.request.body.password
 
   // 判断数据库里面有没有账号 有就验证密码 没有新增提一条记录
-  const registerSql = `select * from users_list where username ='${username}'`
+  const registerSql = `select * from admin_users_list where username ='${username}'`
   const resArr = await new Promise((resolve, reject) => {
     return db.query(registerSql, (err, data) => {
       if (err) throw err
@@ -26,7 +26,7 @@ login.post("/register", async (ctx) => {
     }
   } else {
     // 不存在该账号 insert data 
-    const insertUserSql = `insert into users_list(username ,password) values('${username}','${password}')`
+    const insertUserSql = `insert into admin_users_list(username ,password) values('${username}','${password}')`
     const res = await new Promise((resolve, reject) => {
       return db.query(insertUserSql, (err, data) => {
         if (err) throw err
@@ -48,7 +48,7 @@ login.post("/login", async (ctx) => {
   const password = ctx.request.body.password
 
   // 判断数据库里面有没有账号 有就验证密码
-  const checkUserSql = `select * from users_list where username ='${username}'`
+  const checkUserSql = `select * from admin_users_list where username ='${username}'`
   const resArr = await new Promise((resolve, reject) => {
     return db.query(checkUserSql, (err, data) => {
       if (err) throw err
@@ -85,7 +85,7 @@ login.post("/updatePassword", async (ctx) => {
   const id = ctx.request.body.id
   const apwd = ctx.request.body.apwd
 
-  const updateSql = `update users_list set password='${apwd}' where id='${id}'`
+  const updateSql = `update admin_users_list set password='${apwd}' where id='${id}'`
 
   const res = await new Promise((resolve, reject) => {
     return db.query(updateSql, (err, data) => {

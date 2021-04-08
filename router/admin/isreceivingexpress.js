@@ -36,7 +36,7 @@ isreceivingexpress.post("/getisreceiving_list", async (ctx) => {
 isreceivingexpress.post("/delisreceiving_list", async (ctx) => {
   const id = ctx.request.body.id
   const res = await new Promise((resolve, reject) => {
-    return db.query(`delete from isreceiving_list where express_id = ${id};`, (err, data) => {
+    return db.query(`delete from isreceiving_list where isrec_express_id = ${id};`, (err, data) => {
       if (err) throw err
       let obj = {
         code: 200,
@@ -57,7 +57,7 @@ isreceivingexpress.post("/searchisreceiving_list", async (ctx) => {
   const express_recipients = ctx.request.body.express_recipients
 
   const res = await new Promise((resolve, reject) => {
-    return db.query(`select * from isreceiving_list where express_recipients like '%${express_recipients}%' `, (err, data) => {
+    return db.query(`select * from isreceiving_list where isrec_express_recipients like '%${express_recipients}%' `, (err, data) => {
       if (err) throw err
       let obj = {
         code: 200,
