@@ -2,6 +2,9 @@
 const Koa = require("koa2")
 const app = new Koa()
 
+
+
+
 // 允许跨域访问
 const cors = require("koa2-cors")
 
